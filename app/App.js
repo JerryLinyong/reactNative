@@ -1,12 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { TabBar } from 'antd-mobile-rn';
 import Home from './components/home'
 import Msg from './components/msg'
 import Map from './components/map'
 import Count from './components/count'
 import Mine from './components/mine'
-import Manage from './components/manage'
 
 export default class BasicTabBarExample extends React.Component {
   constructor(props) {
@@ -63,15 +61,6 @@ export default class BasicTabBarExample extends React.Component {
           onPress={() => this.onChangeTab('count')}
         >
           <Count />
-        </TabBar.Item>
-        <TabBar.Item
-          title="管理"
-          icon={require('./img/alipay.png')}
-          selectedIcon={require('./img/alipay_sel.png')}
-          selected={this.state.selectedTab === 'manage'}
-          onPress={() => this.onChangeTab('manage')}
-        >
-          <Manage />
         </TabBar.Item>
         <TabBar.Item
           icon={require('./img/busi.png')}
