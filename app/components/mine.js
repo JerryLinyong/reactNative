@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image } from 'react-native';
-
+import {StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { List, Button, WingBlank, Carousel } from 'antd-mobile-rn';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>mine</Text>
+        <Image
+          style={{height: 200,width: 400,marginTop: 40}}
+          resizeMode='stretch'
+          source={require('./Koala.jpg')}
+        />
+        <WingBlank>
+          <Button style={{marginTop: 40}}>默认登陆位置</Button>
+        </WingBlank>
       </View>
     );
   }
@@ -15,18 +22,25 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  wrapper: {
+    backgroundColor: '#fff',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  containerHorizontal: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 150,
+  },
+  containerVertical: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 150,
+  },
+  text: {
+    color: '#fff',
+    fontSize: 36,
   },
 });

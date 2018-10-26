@@ -64,7 +64,7 @@ export default class BasicTabBarExample extends React.Component {
         </TabBar.Item>
         <TabBar.Item
           icon={require('./img/busi.png')}
-          selectedIcon={require('./img/busi_sel.png')}
+          selectedIcon={require('./img/alipay_sel.png')}
           title="我的"
           selected={this.state.selectedTab === 'mine'}
           onPress={() => this.onChangeTab('mine')}
