@@ -1,12 +1,13 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile-rn';
-import Home from './components/home'
+import Home from './components/home/home'
 import Msg from './components/msg'
 import Map from './components/map'
 import Count from './components/count'
-import Mine from './components/mine'
+import User from './components/user/user'
+import { connect } from 'react-redux'
 
-export default class BasicTabBarExample extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +20,8 @@ export default class BasicTabBarExample extends React.Component {
     });
   }
   render() {
+    let navigation = this.props.navigation
+    console.log(this.props)
     return (
       <TabBar
         unselectedTintColor="#949494"
@@ -27,26 +30,23 @@ export default class BasicTabBarExample extends React.Component {
       >
         <TabBar.Item
           title="首页"
-          icon={require('./img/alipay.png')}
-          selectedIcon={require('./img/alipay_sel.png')}
+          icon={require('./img/home.png')}
           selected={this.state.selectedTab === 'home'}
           onPress={() => this.onChangeTab('home')}
         >
           <Home />
         </TabBar.Item>
         <TabBar.Item
-          icon={require('./img/koubei.png')}
-          selectedIcon={require('./img/koubei_sel.png')}
+          icon={require('./img/message.png')}
           title="消息"
-          badge={2}
+          badge={this.props.count}
           selected={this.state.selectedTab === 'msg'}
           onPress={() => this.onChangeTab('msg')}
         >
           <Msg />
         </TabBar.Item>
         <TabBar.Item
-          icon={require('./img/friend.png')}
-          selectedIcon={require('./img/friend_sel.png')}
+          icon={require('./img/map.png')}
           title="地图"
           selected={this.state.selectedTab === 'map'}
           onPress={() => this.onChangeTab('map')}
@@ -55,23 +55,29 @@ export default class BasicTabBarExample extends React.Component {
         </TabBar.Item>
         <TabBar.Item
           title="统计"
-          icon={require('./img/alipay.png')}
-          selectedIcon={require('./img/alipay_sel.png')}
+          icon={require('./img/count.png')}
           selected={this.state.selectedTab === 'count'}
           onPress={() => this.onChangeTab('count')}
         >
           <Count />
         </TabBar.Item>
         <TabBar.Item
-          icon={require('./img/busi.png')}
-          selectedIcon={require('./img/alipay_sel.png')}
+          icon={require('./img/user.png')}
           title="我的"
-          selected={this.state.selectedTab === 'mine'}
-          onPress={() => this.onChangeTab('mine')}
+          selected={this.state.selectedTab === 'user'}
+          onPress={() => this.onChangeTab('user')}
         >
-          <Mine />
+          <User navigation={navigation}/>
         </TabBar.Item>
       </TabBar>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    count: state.count,
+  }
+}
+
+export default connect(mapStateToProps)(App)
