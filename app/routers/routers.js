@@ -2,28 +2,37 @@ import { createStackNavigator } from 'react-navigation';
 import App from '../main/App'
 import Login from '../login/login'
 import Config from '../login/config'
-import React from "react";
-import { Text, View, Image } from "react-native";
+import SignUp from '../login/signUp'
+import React from 'react'
+import { Button } from 'antd-mobile-rn';
 
-class Title extends React.Component {
-  render() {
-    return (
-      <View style={{width: '100%',paddingLeft:'10%',justifyContent: 'space-between',flexDirection: 'row',alignItems:'center'}}>
-        <Text style={{fontSize: 20}}>环宇通</Text>
-        <View style={{flexDirection: 'row',paddingHorizontal:20}}>
-          <Image source={require("../img/search.png")} />
-          <Image source={require("../img/plus.png")} />
-        </View>
-      </View>
-    );
-  }
-}
-
-
-export default createStackNavigator({
-  Main: App,
-  Login: Login,
-  Config: Config
+export default createStackNavigator(
+  {
+    Main: {
+      screen: App,
+      navigationOptions: ({navigation}) => ({
+          header: null
+      })
+    },
+    Login: {
+      screen: Login,
+      navigationOptions: ({navigation}) => ({
+          header: null
+      })
+    },
+    Config: {
+      screen: Config,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: '选择类型',
+        headerRight: (<Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}}>下一步</Button>)
+      })
+    },
+    SignUp: {
+      screen: SignUp,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: '用户组册',
+      })
+    },
   },
   {
     initialRouteName: 'Login',
@@ -31,7 +40,6 @@ export default createStackNavigator({
       headerStyle: {
         backgroundColor: 'white',
       },
-      headerTitle: <Title />,
     },
   }
 );

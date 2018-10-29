@@ -34,6 +34,7 @@ class App extends Component {
               />
             </InputItem>
             <InputItem
+              type="password"
               placeholder="输入密码"
               style={{backgroundColor:'white',padding:10}}
             >
@@ -45,7 +46,7 @@ class App extends Component {
           <Button type='primary' style={{marginTop: 20}} activeStyle={{backgroundColor:'grey'}} onClick={()=>this.props.navigation.navigate('Main')}>登陆</Button>      
           <Button style={{marginTop: 20,backgroundColor:'#bbdefb'}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Config')}}>登陆配置选择</Button>
           <View style={{marginTop:20,marginHorizontal:20,justifyContent:'space-between',flexDirection:'row',alignItems:'center'}}>
-            <Text style={{color:'#42a5f5',fontSize:16}}>注册账号</Text>
+            <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('SignUp')}}>注册账号</Button>
             <View style={{flexDirection:'row',alignItems:'center'}}>
               <Text style={{fontSize:16}}>记住密码</Text>
               <Switch
@@ -54,8 +55,8 @@ class App extends Component {
               />
             </View>
           </View>
-          <View style={{justifyContent:'center',flexDirection:'row',marginTop:20}}>
-            <Text style={{color:'#42a5f5'}}>忘记密码？</Text>
+          <View style={{justifyContent:'center',flexDirection:'row',marginTop:10}}>
+            <Button size='small' style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Config')}}>忘记密码？</Button>
           </View>
           <View style={{justifyContent:'center',flexDirection:'row',marginTop:20,alignItems:'center'}}>
             <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
