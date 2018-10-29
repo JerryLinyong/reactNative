@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
-import App from '../App'
-import Login from '../login'
+import App from '../main/App'
+import Login from '../login/login'
+import Config from '../login/config'
 import React from "react";
 import { Text, View, Image } from "react-native";
 
@@ -18,12 +19,14 @@ class Title extends React.Component {
   }
 }
 
+
 export default createStackNavigator({
-  Home: App,
-  Login: Login
+  Main: App,
+  Login: Login,
+  Config: Config
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
     navigationOptions: {
       headerStyle: {
         backgroundColor: 'white',
