@@ -19,9 +19,20 @@ class App extends React.Component {
       selectedTab: tabName,
     });
   }
+  ChangeTab () {
+    if(this.state.selectedTab==='home') {
+      return (<Home />)
+    } else if (this.state.selectedTab==='msg') {
+      return (<Msg />)
+    } else if (this.state.selectedTab==='map') {
+      return (<Map/>)
+    } else if (this.state.selectedTab==='count') {
+      return (<Count/>)
+    }else if (this.state.selectedTab==='user') {
+      return (<User navigation={this.props.navigation}/>)
+    }
+  }
   render() {
-    let navigation = this.props.navigation
-    console.log(this.props)
     return (
       <TabBar
         unselectedTintColor="#949494"
@@ -34,7 +45,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'home'}
           onPress={() => this.onChangeTab('home')}
         >
-          <Home />
+          {this.ChangeTab()}
         </TabBar.Item>
         <TabBar.Item
           icon={require('./img/message.png')}
@@ -43,7 +54,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'msg'}
           onPress={() => this.onChangeTab('msg')}
         >
-          <Msg />
+          {this.ChangeTab()}
         </TabBar.Item>
         <TabBar.Item
           icon={require('./img/map.png')}
@@ -51,7 +62,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'map'}
           onPress={() => this.onChangeTab('map')}
         >
-          <Map />
+          {this.ChangeTab()}
         </TabBar.Item>
         <TabBar.Item
           title="统计"
@@ -59,7 +70,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'count'}
           onPress={() => this.onChangeTab('count')}
         >
-          <Count />
+          {this.ChangeTab()}
         </TabBar.Item>
         <TabBar.Item
           icon={require('./img/user.png')}
@@ -67,7 +78,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'user'}
           onPress={() => this.onChangeTab('user')}
         >
-          <User navigation={navigation}/>
+          {this.ChangeTab()}
         </TabBar.Item>
       </TabBar>
     );
