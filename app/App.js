@@ -42,6 +42,7 @@ class App extends React.Component {
         <TabBar.Item
           title="首页"
           icon={require('./img/home.png')}
+          selectedIcon={require('./img/homeA.png')}
           selected={this.state.selectedTab === 'home'}
           onPress={() => this.onChangeTab('home')}
         >
@@ -49,6 +50,7 @@ class App extends React.Component {
         </TabBar.Item>
         <TabBar.Item
           icon={require('./img/message.png')}
+          selectedIcon={require('./img/messageA.png')}
           title="消息"
           badge={this.props.count}
           selected={this.state.selectedTab === 'msg'}
@@ -58,6 +60,7 @@ class App extends React.Component {
         </TabBar.Item>
         <TabBar.Item
           icon={require('./img/map.png')}
+          selectedIcon={require('./img/mapA.png')}
           title="地图"
           selected={this.state.selectedTab === 'map'}
           onPress={() => this.onChangeTab('map')}
@@ -67,6 +70,7 @@ class App extends React.Component {
         <TabBar.Item
           title="统计"
           icon={require('./img/count.png')}
+          selectedIcon={require('./img/countA.png')}
           selected={this.state.selectedTab === 'count'}
           onPress={() => this.onChangeTab('count')}
         >
@@ -74,6 +78,7 @@ class App extends React.Component {
         </TabBar.Item>
         <TabBar.Item
           icon={require('./img/user.png')}
+          selectedIcon={require('./img/userA.png')}
           title="我的"
           selected={this.state.selectedTab === 'user'}
           onPress={() => this.onChangeTab('user')}
