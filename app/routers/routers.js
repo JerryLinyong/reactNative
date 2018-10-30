@@ -7,6 +7,8 @@ import Config from '../login/config'
 import SignUp from '../login/signUp'
 import Scan from '../login/scan'
 import Password from '../login/password'
+import Active from '../login/active'
+import Service from '../login/service'
 
 export default createStackNavigator(
   {
@@ -26,7 +28,6 @@ export default createStackNavigator(
       screen: Config,
       navigationOptions: ({navigation}) => ({
         headerTitle: '选择类型',
-        headerRight: (<Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={()=>navigation.navigate('Scan')}>下一步</Button>)
       })
     },
     SignUp: {
@@ -45,6 +46,18 @@ export default createStackNavigator(
       screen: Password,
       navigationOptions: ({}) => ({
         headerTitle: '找回密码',
+      })
+    },
+    Active: {
+      screen: Active,
+      navigationOptions: ({}) => ({
+        headerTitle: '开通账号',
+      })
+    },
+    Service: {
+      screen: Service,
+      navigationOptions: ({}) => ({
+        headerTitle: '服务器选择',
       })
     },
   },

@@ -6,10 +6,6 @@ let initState = {
 }
 
 function counter(state = initState, action) {
-  console.log(action)
-  console.log(state.count)
-  console.log(state.isLogin)
-  console.log(state)
   switch (action.type) {
   case 'INCREMENT':
     return state.count + 1;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image } from 'react-native';
-import { Button, WingBlank, InputItem, Switch} from 'antd-mobile-rn';
+import { Button, WingBlank, InputItem } from 'antd-mobile-rn';
 import { connect } from 'react-redux'
 
 class App extends Component {
@@ -8,6 +8,8 @@ class App extends Component {
     super(props);
     this.state = {
       checked: false,
+      user: '',
+      password: '',
     };
   }
 
@@ -15,6 +17,25 @@ class App extends Component {
     this.setState({
       checked: value,
     });
+  }
+  login =  ()=> {
+    console.log(this.state.user,'111')
+    fetch("https://www.easy-mock.com/mock/5bd802cefbc6d6477d96f9bf/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user: this.state.user,
+        password: this.state.password
+      })
+    }).then((data)=>{
+      console.log(data,'登陆成功')
+      this.props.navigation.navigate('Main')
+    }).catch((err)=>{
+      console.error(err)
+    })
   }
   render() {
     return (
@@ -28,6 +49,11 @@ class App extends Component {
             <InputItem
               placeholder="邮件或手机号码"
               style={{backgroundColor:'white',padding:10}}
+              onChange={(value) => {
+                this.setState({
+                  user: value
+                });
+              }}
             >
               <Image
                 source={require('../img/user.png')}
@@ -37,30 +63,25 @@ class App extends Component {
               type="password"
               placeholder="输入密码"
               style={{backgroundColor:'white',padding:10}}
+              onChange={(value) => {
+                this.setState({
+                  password: value
+                });
+              }}
             >
               <Image
                 source={require('../img/password.png')}
               />
             </InputItem>
           </View>
-          <Button type='primary' style={{marginTop: 20}} activeStyle={{backgroundColor:'grey'}} onClick={()=>this.props.navigation.navigate('Main')}>登陆</Button>      
-          <Button style={{marginTop: 20,backgroundColor:'#bbdefb'}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Config')}}>登陆配置选择</Button>
-          <View style={{marginTop:20,marginHorizontal:20,justifyContent:'space-between',flexDirection:'row',alignItems:'center'}}>
+          <Button type='primary' style={{marginTop: 30}} activeStyle={{backgroundColor:'grey'}} onClick={()=>this.props.navigation.navigate('Active')}>登录</Button>
+          <View style={{marginTop:20,justifyContent:'space-between',flexDirection:'row',alignItems:'center'}}>
             <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('SignUp')}}>注册账号</Button>
-            <View style={{flexDirection:'row',alignItems:'center'}}>
-              <Text style={{fontSize:16}}>记住密码</Text>
-              <Switch
-                checked={this.state.checked}
-                onChange={this.onSwitchChange}
-              />
-            </View>
-          </View>
-          <View style={{justifyContent:'center',flexDirection:'row',marginTop:10}}>
-            <Button size='small' style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Password')}}>忘记密码？</Button>
+            <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Password')}}>忘记密码？</Button>         
           </View>
           <View style={{justifyContent:'center',flexDirection:'row',marginTop:20,alignItems:'center'}}>
             <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
-            <Text>其他方式登陆</Text>
+            <Text>其他方式登录</Text>
             <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
           </View>   
           <View style={{flexDirection:'row',justifyContent:'center',marginTop:20}}>
@@ -85,16 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
-  return {
-    isLogin: state.isLogin,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    login: ()=>{dispatch({type:'LOGIN'})}
-  }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+export default App
