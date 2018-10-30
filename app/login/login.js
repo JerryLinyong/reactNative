@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <Image
-          style={{height: 200,width: '100%'}}
+          style={{height: 160,width: '100%'}}
           source={require('../img/Koala.jpg')}
         />
         <WingBlank>
