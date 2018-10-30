@@ -6,18 +6,19 @@ import Login from '../login/login'
 import Config from '../login/config'
 import SignUp from '../login/signUp'
 import Scan from '../login/scan'
+import Password from '../login/password'
 
 export default createStackNavigator(
   {
     Main: {
       screen: App,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: ({}) => ({
           header: null
       })
     },
     Login: {
       screen: Login,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: ({}) => ({
           header: null
       })
     },
@@ -30,14 +31,20 @@ export default createStackNavigator(
     },
     SignUp: {
       screen: SignUp,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: '用户组册',
+      navigationOptions: ({}) => ({
+        headerTitle: '用户注册',
       })
     },
     Scan: {
       screen: Scan,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: ({}) => ({
         headerTitle: '扫描',
+      })
+    },
+    Password: {
+      screen: Password,
+      navigationOptions: ({}) => ({
+        headerTitle: '找回密码',
       })
     },
   },

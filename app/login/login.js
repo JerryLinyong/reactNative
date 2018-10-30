@@ -56,7 +56,7 @@ class App extends Component {
             </View>
           </View>
           <View style={{justifyContent:'center',flexDirection:'row',marginTop:10}}>
-            <Button size='small' style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Config')}}>忘记密码？</Button>
+            <Button size='small' style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Password')}}>忘记密码？</Button>
           </View>
           <View style={{justifyContent:'center',flexDirection:'row',marginTop:20,alignItems:'center'}}>
             <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>

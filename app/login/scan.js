@@ -1,115 +1,101 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RNCamera } from 'react-native-camera';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View, Image, Animated, Easing } from 'react-native';
+import { Button, WingBlank, InputItem, Switch} from 'antd-mobile-rn';
+import { connect } from 'react-redux'
+import { RNCamera } from 'react-native-camera'
 
 
-class cameraRecordScreen extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            isFlashOn:false,        //闪光灯
-            isRecording:false,      //是否在录像
-        }
+class ScanScreen extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          moveAnim: new Animated.Value(0)
+      };
+  }
 
-    }
+  componentDidMount() {
+      this.startAnimation();
+  }
 
-    toggleFlash(){
-        this.setState({isFlashOn:!this.state.isFlashOn})
-    }
+  startAnimation = () => {
+      this.state.moveAnim.setValue(0);
+      Animated.timing(
+          this.state.moveAnim,
+          {
+              toValue: -200,
+              duration: 1500,
+              easing: Easing.linear
+          }
+      ).start(() => this.startAnimation());
+  };
+  //  识别二维码
+  onBarCodeRead = (result) => {
+      const { navigate } = this.props.navigation;
+             const {data} = result;
+          navigate('Sale', {
+              url: data
+          })
+  };
 
-    isFlashOn(){
-        if (this.state.isFlashOn===false){
-            return(
-                <TouchableOpacity  onPress={()=>{this.toggleFlash()}}>
-                    <Text style={{fontSize:30,color:'black'}}>&#xe633;</Text>
-                </TouchableOpacity>
-
-            )
-        } else {
-            return(
-                <TouchableOpacity  onPress={()=>{this.toggleFlash()}}>
-                    <Text style={{fontSize:30,color:'white'}}>&#xe633;</Text>
-                </TouchableOpacity>
-
-            )
-        }
-
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <RNCamera
-                    style={styles.preview}
-                    type={RNCamera.Constants.Type.back}
-                    flashMode={this.state.isFlashOn===true ? RNCamera.Constants.FlashMode.on : RNCamera.Constants.FlashMode.off}
-                    permissionDialogTitle={'Permission to use camera'}
-                    permissionDialogMessage={'We need your permission to use your camera phone'}
-                >
-                    {({ camera, status }) => {
-                        console.log(status);
-                        return (
-                            <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-                                <View style={{position:'absolute',top:30,left:-40}}>{this.isFlashOn()}</View>
-                                {this.recordBtn(camera)}
-                            </View>
-                        );
-                    }}
-                </RNCamera>
-            </View>
-        );
-    }
-
-    recordBtn(camera){
-        if (this.state.isRecording===false){
-            return(
-                <TouchableOpacity onPress={() => this.takeRecord(camera)} style={styles.capture}>
-                    <Text style={{ fontSize: 14 }}> 摄像 </Text>
-                </TouchableOpacity>
-            )
-        } else {
-            return (
-                <TouchableOpacity onPress={() => this.stopRecord(camera)} style={styles.capture}>
-                    <Text style={{ fontSize: 14 }}> 停止 </Text>
-                </TouchableOpacity>
-            )
-        }
-    }
-    //开始录像
-     takeRecord= async function(camera){
-        this.setState({isRecording:true});
-        const options = { quality:RNCamera.Constants.VideoQuality["480p"],maxFileSize:(100*1024*1024) };
-        const data = await camera.recordAsync(options);
-        console.log(data);
-        this.props.navigation.navigate('parentPage',{videoUrl:data.uri})
-    };
-    //停止录像
-    stopRecord(camera){
-        this.setState({isRecording:false});
-        camera.stopRecording()
-    }
+  render() {
+      return (
+          <View style={styles.container}>
+              <RNCamera
+                  ref={ref => {
+                      this.camera = ref;
+                  }}
+                  style={styles.preview}
+                  type={RNCamera.Constants.Type.back}
+                  flashMode={RNCamera.Constants.FlashMode.on}
+                  onBarCodeRead={this.onBarCodeRead}
+              >
+                  <View style={styles.rectangleContainer}>
+                      <View style={styles.rectangle}/>
+                      <Animated.View style={[
+                          styles.border,
+                          {transform: [{translateY: this.state.moveAnim}]}]}/>
+                      <Text style={styles.rectangleText}>将二维码放入框内，即可自动扫描</Text>
+                  </View>
+                  </RNCamera>
+          </View>
+      );
+  }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: 'black',
-    },
-    preview: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    capture: {
-        flex: 0,
-        backgroundColor: '#fff',
-        borderRadius: 5,
-        padding: 15,
-        paddingHorizontal: 20,
-        alignSelf: 'center',
-        margin: 20,
-    },
-});
+export default ScanScreen;
 
-export default cameraRecordScreen
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      flexDirection: 'row'
+  },
+  preview: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      alignItems: 'center'
+  },
+  rectangleContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'transparent'
+  },
+  rectangle: {
+      height: 200,
+      width: 200,
+      borderWidth: 1,
+      borderColor: '#00FF00',
+      backgroundColor: 'transparent'
+  },
+  rectangleText: {
+      flex: 0,
+      color: '#fff',
+      marginTop: 10
+  },
+  border: {
+      flex: 0,
+      width: 200,
+      height: 2,
+      backgroundColor: '#00FF00',
+  }
+});
