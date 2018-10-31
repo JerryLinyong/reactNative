@@ -61,7 +61,7 @@ export default class App extends Component {
             >
             </InputItem>
           </View>
-          <Button type='primary' style={{marginTop: 40}} activeStyle={{backgroundColor:'grey'}} onClick={() => {}}>注册</Button>
+          <Button type='primary' style={{marginTop: 40}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Service')}}>注册</Button>
         </WingBlank>
       </View>
     );

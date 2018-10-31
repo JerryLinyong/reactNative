@@ -31,7 +31,12 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <WingBlank style={{marginTop:20}}>   
+        <WingBlank style={{marginTop:40}}>   
+          <InputItem
+            placeholder='请输入需要连接点服务器地址'
+            style={{padding:10,flex:1}}
+            >
+            </InputItem>
           <View style={{marginTop:20}}>
             <InputItem
               type='phone'
@@ -61,7 +66,7 @@ export default class App extends Component {
             >
             </InputItem>
           </View>
-          <Button type='primary' style={{marginTop: 40}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Login')}}>确认</Button>
+          <Button type='primary' style={{marginTop: 40}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Active')}}>确认</Button>
         </WingBlank>
       </View>
     );

@@ -24,7 +24,7 @@ export default class App extends Component {
             </View>
           </View>
           <Button type='primary' style={{marginTop: 20}} activeStyle={{backgroundColor:'grey'}} onClick={() => {}}>通过微信或QQ分享</Button>
-          <Button type='primary' style={{marginTop: 20,backgroundColor: '#64b5f6'}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Config')}}>创建组织结构</Button>
+          <Button type='primary' style={{marginTop: 20,backgroundColor: '#64b5f6'}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Info')}}>创建组织结构</Button>
         </WingBlank>
       </View>
     );

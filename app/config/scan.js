@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, Animated, Easing } from 'react-native';
-import { Button, WingBlank, InputItem, Switch} from 'antd-mobile-rn';
-import { connect } from 'react-redux'
 import { RNCamera } from 'react-native-camera'
 
 
@@ -39,25 +37,29 @@ class ScanScreen extends Component {
 
   render() {
       return (
-          <View style={styles.container}>
-              <RNCamera
-                  ref={ref => {
-                      this.camera = ref;
-                  }}
-                  style={styles.preview}
-                  type={RNCamera.Constants.Type.back}
-                  flashMode={RNCamera.Constants.FlashMode.on}
-                  onBarCodeRead={this.onBarCodeRead}
-              >
-                  <View style={styles.rectangleContainer}>
-                      <View style={styles.rectangle}/>
-                      <Animated.View style={[
-                          styles.border,
-                          {transform: [{translateY: this.state.moveAnim}]}]}/>
-                      <Text style={styles.rectangleText}>将二维码放入框内，即可自动扫描</Text>
-                  </View>
-                </RNCamera>
-          </View>
+        <View style={styles.container}>
+            <RNCamera
+                ref={ref => {
+                    this.camera = ref;
+                }}
+                style={styles.preview}
+                type={RNCamera.Constants.Type.back}
+                flashMode={RNCamera.Constants.FlashMode.on}
+                onBarCodeRead={this.onBarCodeRead}
+            >
+            <View style={styles.rectangleContainer}>
+                <View style={styles.rectangle}/>
+                <Animated.View style={[
+                    styles.border,
+                    {transform: [{translateY: this.state.moveAnim}]}]}/>
+                <Text style={styles.rectangleText}>将二维码放入框内，即可自动扫描</Text>
+            </View>
+            </RNCamera>
+            <Image
+            style={{height: 200,width: '100%'}}
+            source={require('../img/Koala.jpg')}
+            />
+        </View>
       );
   }
 }

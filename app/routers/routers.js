@@ -1,13 +1,16 @@
 import { createStackNavigator } from 'react-navigation';
 import App from '../main/App'
 import Login from '../login/login'
-import Config from '../login/config'
 import SignUp from '../login/signUp'
-import Scan from '../login/scan'
 import Password from '../login/password'
-import Active from '../login/active'
-import Service from '../login/service'
 import TransScreen from '../login/transScreen'
+import Scan from '../config/scan'
+import Info from '../config/info'
+import Config from '../config/config'
+import Active from '../config/active'
+import Service from '../config/service'
+import CompanyService from '../config/companyService'
+import LocalService from '../config/localService'
 
 export default createStackNavigator(
   {
@@ -35,6 +38,12 @@ export default createStackNavigator(
         headerTitle: '用户注册',
       })
     },
+    Info: {
+      screen: Info,
+      navigationOptions: ({}) => ({
+        headerTitle: '单位信息',
+      })
+    },
     Scan: {
       screen: Scan,
       navigationOptions: ({}) => ({
@@ -57,6 +66,18 @@ export default createStackNavigator(
       screen: Service,
       navigationOptions: ({}) => ({
         headerTitle: '服务器选择',
+      })
+    },
+    CompanyService: {
+      screen: CompanyService,
+      navigationOptions: ({}) => ({
+        headerTitle: '服务器地址',
+      })
+    },
+    LocalService: {
+      screen: LocalService,
+      navigationOptions: ({}) => ({
+        headerTitle: '服务器地址',
       })
     },
     TransScreen: {

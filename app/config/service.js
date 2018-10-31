@@ -10,9 +10,9 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <WingBlank style={{marginTop:40}}>
-          <Button style={{marginTop: 20,backgroundColor:'#ffd600'}} activeStyle={{backgroundColor:'grey'}} onClick={()=> {}}>默认服务器</Button>      
-          <Button type='primary' style={{marginTop: 20}} activeStyle={{backgroundColor:'grey'}} onClick={() => {}}>企业服务器</Button>
-          <Button style={{marginTop: 20,backgroundColor:'#00e676'}} activeStyle={{backgroundColor:'grey'}} onClick={() => {}}>本地服务器</Button>
+          <Button style={{marginTop: 20,backgroundColor:'#ffd600'}} activeStyle={{backgroundColor:'grey'}} onClick={()=> {this.props.navigation.navigate('Active')}}>默认服务器</Button>      
+          <Button type='primary' style={{marginTop: 20}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('CompanyService')}}>企业服务器</Button>
+          <Button style={{marginTop: 20,backgroundColor:'#00e676'}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('LocalService')}}>本地服务器</Button>
           <View style={{marginTop:40,borderColor:'grey',borderWidth:1,borderStyle:'solid',padding:10}}>
             <Text>请您选择网络配置地址:</Text>
             <Text>    默认服务器：我司云平台</Text>

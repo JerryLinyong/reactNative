@@ -27,13 +27,14 @@ export default class App extends Component {
             >
             </InputItem>
             <Text style={styles.text}>标识图片</Text>
-            <View style={{marginTop:20}}>
-                <ImagePicker
+            <View style={{marginTop:20,alignItems:'center'}}>
+              <ImagePicker
                 onChange={this.handleFileChange}
                 files={this.state.files}
-                />
+                style={{flex:1}}
+              />
             </View>
-          <Button type='primary' style={{marginTop: 40}} activeStyle={{backgroundColor:'grey'}} onClick={() => {}}>创建</Button>
+          <Button type='primary' style={{marginTop: 40}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Main')}}>创建</Button>
         </WingBlank>
       </View>
     );

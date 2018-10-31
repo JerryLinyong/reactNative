@@ -4,7 +4,7 @@ import { AsyncStorage, View } from "react-native"
 class App extends Component {
   componentWillMount(){
     AsyncStorage.getItem("token", (err, result) => {
-      if(result==='12'){
+      if(result==='123'){
         this.props.navigation.navigate('Login')
       } else {
         this.props.navigation.navigate('Main')
