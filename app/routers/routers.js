@@ -1,6 +1,4 @@
 import { createStackNavigator } from 'react-navigation';
-import React from 'react'
-import { Button } from 'antd-mobile-rn';
 import App from '../main/App'
 import Login from '../login/login'
 import Config from '../login/config'
@@ -9,6 +7,7 @@ import Scan from '../login/scan'
 import Password from '../login/password'
 import Active from '../login/active'
 import Service from '../login/service'
+import TransScreen from '../login/transScreen'
 
 export default createStackNavigator(
   {
@@ -60,9 +59,15 @@ export default createStackNavigator(
         headerTitle: '服务器选择',
       })
     },
+    TransScreen: {
+      screen: TransScreen,
+      navigationOptions: ({}) => ({
+        header: null
+      })
+    },
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'TransScreen',
     navigationOptions: {
       headerStyle: {
         backgroundColor: 'white',

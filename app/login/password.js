@@ -26,7 +26,7 @@ export default class App extends Component {
         sended: false
       })
       clearInterval(timer)
-    },6000)
+    },60000)
   }
   render() {
     return (

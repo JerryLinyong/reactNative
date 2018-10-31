@@ -7,9 +7,20 @@ const renderContent = (tab: any, index: any) => {
   const content = [1, 2, 3, 4, 5, 6, 7, 8].map(i => {
     let randomColor = getColor()
     return (
-      <View key={`${index}_${i}`} style={{margin: 6,backgroundColor: randomColor,padding: 10,borderRadius: 10}}>
+      <View key={`${index}_${i}`} style={{marginVertical: 4,flexDirection:'row',justifyContent:'space-around'}}>
+        <View style={{backgroundColor: randomColor,padding: 10,borderRadius: 10,width:'48%'}}>
+          <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between',padding: 4}}>
+              <Text style={{fontSize: 20,fontWeight: 'bold', color: 'white'}}>{'牡丹包厢'}</Text>
+              <Text style={{color: 'yellow'}}>{'45'}</Text>
+          </View>
+          <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between',padding: 4}}>
+              <Text style={{color: 'white'}}>{'2分钟前'}</Text>
+              <Text style={{color: 'white'}}>{'点菜'}</Text>
+          </View>
+        </View>
+        <View style={{backgroundColor: randomColor,padding: 10,borderRadius: 10,width:'48%'}}>
         <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between',padding: 4}}>
-            <Text style={{fontSize: 26,fontWeight: 'bold', color: 'white'}}>{'牡丹包厢'}</Text>
+            <Text style={{fontSize: 20,fontWeight: 'bold', color: 'white'}}>{'牡丹包厢'}</Text>
             <Text style={{color: 'yellow'}}>{'45'}</Text>
         </View>
         <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between',padding: 4}}>
@@ -17,6 +28,7 @@ const renderContent = (tab: any, index: any) => {
             <Text style={{color: 'white'}}>{'点菜'}</Text>
         </View>
       </View>
+    </View>
     );
   });
   return <ScrollView style={{ backgroundColor: '#fff' }}>{content}</ScrollView>;

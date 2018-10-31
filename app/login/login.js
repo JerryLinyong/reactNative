@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image } from 'react-native';
 import { Button, WingBlank, InputItem } from 'antd-mobile-rn';
-import { connect } from 'react-redux'
+import { AsyncStorage } from "react-native"
 
 class App extends Component {
   constructor(props: any) {
@@ -12,7 +12,6 @@ class App extends Component {
       password: '',
     };
   }
-
   onSwitchChange = (value: any) => {
     this.setState({
       checked: value,
@@ -33,6 +32,7 @@ class App extends Component {
     }).then((data)=>{
       console.log(data,'登陆成功')
       this.props.navigation.navigate('Main')
+      AsyncStorage.setItem('token','123')
     }).catch((err)=>{
       console.error(err)
     })
@@ -44,7 +44,7 @@ class App extends Component {
           style={{height: 160,width: '100%'}}
           source={require('../img/Koala.jpg')}
         />
-        <WingBlank>
+        <WingBlank style={{flex:1}}> 
           <View style={{marginTop:20}}>
             <InputItem
               placeholder="邮件或手机号码"
@@ -73,26 +73,28 @@ class App extends Component {
                 source={require('../img/password.png')}
               />
             </InputItem>
+            <Button type='primary' style={{marginTop:40}} activeStyle={{backgroundColor:'grey'}} onClick={this.login}>登录</Button>
+            <View style={{marginTop:20,justifyContent:'space-between',flexDirection:'row',alignItems:'center'}}>
+              <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('SignUp')}}>注册账号</Button>
+              <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Password')}}>忘记密码？</Button>         
+            </View>
           </View>
-          <Button type='primary' style={{marginTop: 30}} activeStyle={{backgroundColor:'grey'}} onClick={()=>this.props.navigation.navigate('Active')}>登录</Button>
-          <View style={{marginTop:20,justifyContent:'space-between',flexDirection:'row',alignItems:'center'}}>
-            <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('SignUp')}}>注册账号</Button>
-            <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Password')}}>忘记密码？</Button>         
-          </View>
-          <View style={{justifyContent:'center',flexDirection:'row',marginTop:20,alignItems:'center'}}>
-            <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
-            <Text>其他方式登录</Text>
-            <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
-          </View>   
-          <View style={{flexDirection:'row',justifyContent:'center',marginTop:20}}>
-            <Image
-              style={{width:40,height:40,marginRight:20}}
-              source={require('../img/QQ.jpeg')}
-            />
-            <Image
-              style={{width:40,height:40,marginLeft:20}}
-              source={require('../img/wechat.jpeg')}
-            />
+          <View style={{position:'absolute',width:'100%',bottom:'4%'}}>
+            <View style={{justifyContent:'center',flexDirection:'row',marginTop:20,alignItems:'center'}}>
+              <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
+              <Text>其他方式登录</Text>
+              <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
+            </View>   
+            <View style={{flexDirection:'row',justifyContent:'center',marginTop:20}}>
+              <Image
+                style={{width:40,height:40,marginRight:20}}
+                source={require('../img/QQ.jpeg')}
+              />
+              <Image
+                style={{width:40,height:40,marginLeft:20}}
+                source={require('../img/wechat.jpeg')}
+              />
+            </View>
           </View>
         </WingBlank>
       </View>

@@ -56,7 +56,7 @@ class ScanScreen extends Component {
                           {transform: [{translateY: this.state.moveAnim}]}]}/>
                       <Text style={styles.rectangleText}>将二维码放入框内，即可自动扫描</Text>
                   </View>
-                  </RNCamera>
+                </RNCamera>
           </View>
       );
   }

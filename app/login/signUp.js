@@ -26,7 +26,7 @@ export default class App extends Component {
         sended: false
       })
       clearInterval(timer)
-    },6000)
+    },60000)
   }
   render() {
     return (
@@ -61,7 +61,7 @@ export default class App extends Component {
             >
             </InputItem>
           </View>
-          <Button type='primary' style={{marginTop: 20}} activeStyle={{backgroundColor:'grey'}} onClick={() => {}}>注册</Button>
+          <Button type='primary' style={{marginTop: 40}} activeStyle={{backgroundColor:'grey'}} onClick={() => {}}>注册</Button>
         </WingBlank>
       </View>
     );

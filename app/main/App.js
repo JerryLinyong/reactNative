@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile-rn';
 import Home from './home/home'
-import Msg from './msg'
+import Msg from './msg/msg'
 import Map from './map'
 import Count from './count'
 import User from './user/user'
@@ -32,6 +32,31 @@ class App extends React.Component {
       return (<User navigation={this.props.navigation}/>)
     }
   }
+  homeTab () {
+    if (this.state.selectedTab==='home') {
+      return (<Home />)
+    }
+  }
+  msgTab () {
+    if (this.state.selectedTab==='msg') {
+      return (<Msg />)
+    }
+  }
+  mapTab () {
+    if (this.state.selectedTab==='map') {
+      return (<Map />)
+    }
+  }
+  countTab () {
+    if (this.state.selectedTab==='count') {
+      return (<Count />)
+    }
+  }
+  userTab () {
+    if (this.state.selectedTab==='user') {
+      return (<User navigation={this.props.navigation}/>)
+    }
+  }
   render() {
     return (
       <TabBar
@@ -46,7 +71,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'home'}
           onPress={() => this.onChangeTab('home')}
         >
-          <Home />
+          {this.homeTab()}
         </TabBar.Item>
         <TabBar.Item
           icon={require('../img/message.png')}
@@ -56,7 +81,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'msg'}
           onPress={() => this.onChangeTab('msg')}
         >
-          <Msg />
+          {this.msgTab()}
         </TabBar.Item>
         <TabBar.Item
           icon={require('../img/map.png')}
@@ -65,7 +90,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'map'}
           onPress={() => this.onChangeTab('map')}
         >
-          <Map />
+          {this.mapTab()}
         </TabBar.Item>
         <TabBar.Item
           title="统计"
@@ -74,7 +99,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'count'}
           onPress={() => this.onChangeTab('count')}
         >
-          <Count />
+          {this.countTab()}
         </TabBar.Item>
         <TabBar.Item
           icon={require('../img/user.png')}
@@ -83,7 +108,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'user'}
           onPress={() => this.onChangeTab('user')}
         >
-          {this.ChangeTab()}
+          {this.userTab()}
         </TabBar.Item>
       </TabBar>
     );
