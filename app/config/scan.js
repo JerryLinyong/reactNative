@@ -52,13 +52,13 @@ class ScanScreen extends Component {
                 <Animated.View style={[
                     styles.border,
                     {transform: [{translateY: this.state.moveAnim}]}]}/>
-                <Text style={styles.rectangleText}>将二维码放入框内，即可自动扫描</Text>
             </View>
-            </RNCamera>
             <Image
-            style={{height: 200,width: '100%'}}
+            style={{height: 120,width: '90%'}}
             source={require('../img/Koala.jpg')}
             />
+            <Text style={styles.rectangleText}>请扫描设备机身或者说明书上的二维码进行设备添加</Text>
+            </RNCamera>
         </View>
       );
   }
@@ -92,7 +92,9 @@ const styles = StyleSheet.create({
   rectangleText: {
       flex: 0,
       color: '#fff',
-      marginTop: 10
+      marginTop: 10,
+      marginBottom: '10%',
+      textAlign: 'center'
   },
   border: {
       flex: 0,

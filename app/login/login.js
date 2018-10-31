@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image } from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Button, WingBlank, InputItem } from 'antd-mobile-rn';
 import { AsyncStorage } from "react-native"
 
@@ -49,7 +49,7 @@ class App extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Image
           style={{height: 200,width: '100%'}}
           source={require('../img/Koala.jpg')}
@@ -85,7 +85,7 @@ class App extends Component {
             </InputItem>
             <Button type='primary' style={{marginTop:40}} activeStyle={{backgroundColor:'grey'}} onClick={this.login} disabled={this.state.loging}>登录</Button>
             <View style={{marginTop:20,justifyContent:'space-between',flexDirection:'row',alignItems:'center'}}>
-              <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('SignUp')}}>注册账号</Button>
+              <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Service')}}>注册账号</Button>
               <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Password')}}>忘记密码？</Button>         
             </View>
           </View>
@@ -106,7 +106,7 @@ class App extends Component {
           </View>
           <Button type='primary' style={{marginTop:40}} activeStyle={{backgroundColor:'grey'}} onClick={()=>{this.props.navigation.navigate('Main')}}>登录</Button>
         </WingBlank>
-      </View>
+      </ScrollView>
     );
   }
 }
