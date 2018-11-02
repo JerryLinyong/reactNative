@@ -1,3 +1,5 @@
+import React from 'react';
+import { Button } from 'antd-mobile-rn';
 import { createStackNavigator } from 'react-navigation';
 import App from '../main/App'
 import Login from '../login/login'
@@ -11,6 +13,7 @@ import Active from '../config/active'
 import Service from '../config/service'
 import CompanyService from '../config/companyService'
 import LocalService from '../config/localService'
+import ScanCode from '../config/scanCode'
 
 export default createStackNavigator(
   {
@@ -28,7 +31,7 @@ export default createStackNavigator(
     },
     Config: {
       screen: Config,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: '选择类型',
       })
     },
@@ -46,8 +49,17 @@ export default createStackNavigator(
     },
     Scan: {
       screen: Scan,
-      navigationOptions: ({}) => ({
+      navigationOptions: ({navigation}) => ({
         headerTitle: '扫描',
+        headerRight: (
+          <Button activeStyle={{backgroundColor:'grey',borderColor:'white'}} onClick={()=> {navigation.navigate('ScanCode')}}>添加</Button>      
+        ),
+      })
+    },
+    ScanCode: {
+      screen: ScanCode,
+      navigationOptions: ({}) => ({
+        headerTitle: '输入二维码',
       })
     },
     Password: {
@@ -92,6 +104,7 @@ export default createStackNavigator(
     navigationOptions: {
       headerStyle: {
         backgroundColor: 'white',
+        fontSize: 16
       },
     },
   }

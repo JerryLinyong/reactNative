@@ -1,37 +1,66 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { Popover, } from 'antd-mobile-rn';
+import { StyleSheet, Text, View, Image,TouchableNativeFeedback } from 'react-native';
 import Tabs from './tabs'
 
-const Item = Popover.Item;
 
 export default class App extends Component {
-  render() {
-    let overlay =  [
-      <Item key='0' value='all'>
-        <Text>全部</Text>
-      </Item>,
-      <Item key='1' value='service'>
-        <Text>服务类型</Text>
-      </Item>
-    ]
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      isShow: false,
+    };
+  }
+  shwoMenu () {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>环宇通大酒楼</Text>
-        <View style={{position:'absolute',right:0,zIndex:10000}}>
-          <Popover
-            overlay={overlay}
-            overlayStyle={styles.overlayStyle}
-            triggerStyle={styles.triggerStyle}
-            onSelect={this.onSelect}
+      <View style={styles.rec}>
+        <TouchableNativeFeedback
+          background={TouchableNativeFeedback.Ripple('#455a64')}
+          onPress={()=>{
+            this.setState({
+            isShow:false,
+          })}}
           >
-            <Image
-              style={{height: 30,width: 30,margin: 10}}
-              source={require('../../img/menu.png')}
-            />
-          </Popover>
+          <View>
+            <Text style={{padding:10}}>全部</Text>
+          </View>
+        </TouchableNativeFeedback>
+        <TouchableNativeFeedback
+          background={TouchableNativeFeedback.Ripple('#455a64')}
+          onPress={()=>{
+            this.setState({
+            isShow:false
+          })}}
+          >
+          <View>
+            <Text style={{padding:10}}>服务类型</Text>
+          </View>
+        </TouchableNativeFeedback>
+      </View>
+    )
+  }
+  render() {
+    return (
+      <View style={{flex:1,backgroundColor:'white'}}>
+        <Text style={styles.title}>环宇通大酒楼</Text>
+        {this.state.isShow?this.shwoMenu():null}
+        <View style={{position:'absolute',right:10}}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple('#455a64')}
+            onPress={()=>{
+              let check = this.state.isShow
+              this.setState({
+              isShow:!check
+            })}}
+            >
+            <View>
+              <Image
+                style={{height: 30,width: 30,margin: 12}}
+                source={require('../../img/menu.png')}
+              />
+            </View>
+          </TouchableNativeFeedback>
         </View>
-        <View style={{flexDirection: 'row',justifyContent: 'space-around',marginTop:20}}>
+        <View style={{flexDirection: 'row',justifyContent: 'space-around',marginTop:10}}>
           <View>
             <Image
               style={{height: 60,width: 60,borderRadius: 30}}
@@ -63,7 +92,7 @@ export default class App extends Component {
             <Text>服务</Text>
           </View>
         </View>
-        <View style={{flex: 1,backgroundColor: 'red'}}>
+        <View style={{flex: 1}}>
           <Tabs />
         </View>
       </View>
@@ -72,31 +101,22 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white'
-  },
   title: {
     fontSize: 20,
     textAlign: 'center',
     padding: 14,
-    backgroundColor: '#64b5f6',
+    backgroundColor: '#1e88e5',
     fontWeight: 'bold',
     color: 'white'
   },
-  menuContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    height: 400,
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-  },
-  triggerStyle: {
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-  },
-  overlayStyle: {
-    right: 10,
-    marginTop: 50,
-  },
+  rec: {
+    width:160,
+    borderRadius: 4,
+    elevation: 200,
+    backgroundColor:'white',
+    position:'absolute',
+    right:10,
+    top:56,
+    zIndex:1000
+  }
 });

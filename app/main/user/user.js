@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 import { List,Button } from 'antd-mobile-rn';
 const Item = List.Item;
 
@@ -33,7 +33,13 @@ export default class App extends Component {
             <Text style={{fontSize: size}}>检查更新</Text>
           </Item>
         </List>
-        <Button onClick={() => {this.props.navigation.navigate('Login')}} type='primary' style={{margin: 40,marginVertical: 60}} activeStyle={{backgroundColor:'grey'}}>退出登陆</Button> 
+        <TouchableNativeFeedback
+          onPress={() => {this.props.navigation.navigate('Login')}}
+          background={TouchableNativeFeedback.Ripple('#455a64')}>
+          <View style={{width: '90%', height: 50, backgroundColor: '#2196f3',borderRadius:10,justifyContent:'center',marginHorizontal:'5%',marginVertical:40}}>
+            <Text style={{fontSize:18,color:'white',textAlign:'center'}}>退出登陆</Text>
+          </View>
+        </TouchableNativeFeedback>
       </View>
     );
   }
@@ -42,13 +48,13 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 20,
     textAlign: 'center',
     padding: 14,
-    backgroundColor: '#64b5f6',
+    backgroundColor: '#1e88e5',
     fontWeight: 'bold',
     color: 'white'
   },

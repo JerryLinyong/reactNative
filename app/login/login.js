@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { Button, WingBlank, InputItem } from 'antd-mobile-rn';
+import {StyleSheet, Text, View, ScrollView, Image, TouchableNativeFeedback } from 'react-native';
+import { WingBlank, InputItem } from 'antd-mobile-rn';
 import { AsyncStorage } from "react-native"
 
 class App extends Component {
@@ -10,7 +10,8 @@ class App extends Component {
       checked: false,
       user: '',
       password: '',
-      loging: false
+      loging: false,
+      loginBtn: '登录'
     };
   }
   onSwitchChange = (value: any) => {
@@ -19,8 +20,10 @@ class App extends Component {
     });
   }
   login =  ()=> {
+    if (this.state.loging){return}
     this.setState({
-      loging: true
+      loging: true,
+      loginBtn: '正在登录...'
     })
     console.log(this.state.user,'用户账号')
     fetch("https://www.easy-mock.com/mock/5bd802cefbc6d6477d96f9bf/login", {
@@ -37,13 +40,15 @@ class App extends Component {
       console.log(data,'登陆成功')
       this.props.navigation.navigate('Active')
       this.setState({
-        loging: false
+        loging: false,
+        loginBtn: '登录'
       })
       AsyncStorage.setItem('token','123')
     }).catch((err)=>{
       console.error(err)
       this.setState({
-        loging: false
+        loging: false,
+        loginBtn: '登录'
       })
     })
   }
@@ -83,13 +88,31 @@ class App extends Component {
                 source={require('../img/password.png')}
               />
             </InputItem>
-            <Button type='primary' style={{marginTop:40}} activeStyle={{backgroundColor:'grey'}} onClick={this.login} disabled={this.state.loging}>登录</Button>
+            <TouchableNativeFeedback
+              onPress={this.login}
+              background={TouchableNativeFeedback.Ripple('#455a64')}>
+              <View style={{width: '100%', height: 50, backgroundColor: '#2196f3',borderRadius:10,justifyContent:'center', marginTop:40}}>
+                <Text style={{fontSize:18,color:'white',textAlign:'center'}}>{this.state.loginBtn}</Text>
+              </View>
+            </TouchableNativeFeedback>
             <View style={{marginTop:20,justifyContent:'space-between',flexDirection:'row',alignItems:'center'}}>
-              <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Service')}}>注册账号</Button>
-              <Button style={{borderWidth:0}} activeStyle={{backgroundColor:'white'}} onClick={() => {this.props.navigation.navigate('Password')}}>忘记密码？</Button>         
+              <TouchableNativeFeedback
+                onPress={() => {this.props.navigation.navigate('Service')}}
+                background={TouchableNativeFeedback.Ripple('#455a64',true)}>
+                <View style={{backgroundColor:'white',padding:10}}>
+                  <Text style={{fontSize:18}}>注册账号</Text>
+                </View>
+              </TouchableNativeFeedback>
+              <TouchableNativeFeedback
+                onPress={() => {this.props.navigation.navigate('Password')}}
+                background={TouchableNativeFeedback.Ripple('#455a64',true)}>
+                <View>
+                  <Text style={{fontSize:18,padding:10}}>忘记密码？</Text>
+                </View>
+              </TouchableNativeFeedback>
             </View>
           </View>
-          <View style={{justifyContent:'center',flexDirection:'row',marginTop:40,alignItems:'center'}}>
+          <View style={{justifyContent:'center',flexDirection:'row',marginTop:60,alignItems:'center'}}>
             <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
             <Text>其他方式登录</Text>
             <Text style={{flex:1,backgroundColor:'black',height:1}}></Text>
@@ -104,7 +127,13 @@ class App extends Component {
               source={require('../img/wechat.jpeg')}
             />
           </View>
-          <Button type='primary' style={{marginTop:40}} activeStyle={{backgroundColor:'grey'}} onClick={()=>{this.props.navigation.navigate('Main')}}>登录</Button>
+          <TouchableNativeFeedback
+            onPress={() => {this.props.navigation.navigate('Main')}}
+            background={TouchableNativeFeedback.Ripple('#455a64')}>
+            <View style={{width: '100%', height: 50, backgroundColor: '#2196f3',borderRadius:10,justifyContent:'center', marginTop:40}}>
+              <Text style={{fontSize:18,color:'white',textAlign:'center'}}>登录</Text>
+            </View>
+          </TouchableNativeFeedback>
         </WingBlank>
       </ScrollView>
     );

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View,  Image  } from 'react-native';
-import { Button, WingBlank, InputItem} from 'antd-mobile-rn';
+import {StyleSheet, Text, View,  Image, TouchableNativeFeedback } from 'react-native';
+import { Button, WingBlank, InputItem } from 'antd-mobile-rn';
 
 export default class App extends Component {
   constructor(props: any) {
@@ -64,7 +64,13 @@ export default class App extends Component {
             style={{padding:10,marginTop:10}}
           >
           </InputItem>
-          <Button type='primary' style={{marginTop: 40}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Active')}}>确认</Button>
+          <TouchableNativeFeedback
+            onPress={() => this.props.navigation.navigate('Active')}
+            background={TouchableNativeFeedback.Ripple('#455a64')}>
+            <View style={{width: '100%', height: 50, backgroundColor: '#2196f3',borderRadius:10,justifyContent:'center', marginTop:40}}>
+              <Text style={{fontSize:18,color:'white',textAlign:'center'}}>确认</Text>
+            </View>
+          </TouchableNativeFeedback>
         </WingBlank>
       </View>
     );

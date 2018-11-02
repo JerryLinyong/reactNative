@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image } from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableNativeFeedback } from 'react-native';
 import { Button, WingBlank, InputItem, Switch} from 'antd-mobile-rn';
 
 export default class App extends Component {
@@ -23,8 +23,20 @@ export default class App extends Component {
               <Text style={{fontSize: 16,color: 'grey'}}>将此二维码分享给管理员或者由管理员扫描加入到指定单位。</Text>
             </View>
           </View>
-          <Button type='primary' style={{marginTop: 20}} activeStyle={{backgroundColor:'grey'}} onClick={() => {}}>通过微信或QQ分享</Button>
-          <Button type='primary' style={{marginTop: 20,backgroundColor: '#64b5f6'}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('Info')}}>创建组织结构</Button>
+          <TouchableNativeFeedback
+            onPress={() => this.props.navigation.navigate('')}
+            background={TouchableNativeFeedback.Ripple('#455a64')}>
+            <View style={{width: '100%', height: 50, backgroundColor: '#ff5722',borderRadius:10,justifyContent:'center', marginTop:20}}>
+              <Text style={{fontSize:18,color:'white',textAlign:'center'}}>通过微信或QQ分享</Text>
+            </View>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback
+            onPress={() => this.props.navigation.navigate('Info')}
+            background={TouchableNativeFeedback.Ripple('#455a64')}>
+            <View style={{width: '100%', height: 50, backgroundColor: '#2196f3',borderRadius:10,justifyContent:'center', marginTop:20}}>
+              <Text style={{fontSize:18,color:'white',textAlign:'center'}}>创建组织结构</Text>
+            </View>
+          </TouchableNativeFeedback>
         </WingBlank>
       </View>
     );

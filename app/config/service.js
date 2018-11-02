@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View } from 'react-native';
-import { Button, WingBlank } from 'antd-mobile-rn';
+import {StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { WingBlank } from 'antd-mobile-rn';
 
 export default class App extends Component {
 
@@ -9,10 +9,28 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <WingBlank style={{marginTop:40}}>
-          <Button style={{marginTop: 20,backgroundColor:'#ffd600'}} activeStyle={{backgroundColor:'grey'}} onClick={()=> {this.props.navigation.navigate('Scan')}}>默认服务器</Button>      
-          <Button type='primary' style={{marginTop: 20}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('CompanyService')}}>企业服务器</Button>
-          <Button style={{marginTop: 20,backgroundColor:'#00e676'}} activeStyle={{backgroundColor:'grey'}} onClick={() => {this.props.navigation.navigate('LocalService')}}>本地服务器</Button>
+        <WingBlank style={{marginTop:20}}>
+          <TouchableNativeFeedback
+            onPress={() => this.props.navigation.navigate('Scan')}
+            background={TouchableNativeFeedback.Ripple('#455a64')}>
+            <View style={{width: '100%', height: 50, backgroundColor: '#ffd600',borderRadius:10,justifyContent:'center', marginTop:20}}>
+              <Text style={{fontSize:18,color:'white',textAlign:'center',fontWeight:'bold'}}>默认服务器</Text>
+            </View>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback
+            onPress={() => this.props.navigation.navigate('CompanyService')}
+            background={TouchableNativeFeedback.Ripple('#455a64')}>
+            <View style={{width: '100%', height: 50, backgroundColor: '#2196f3',borderRadius:10,justifyContent:'center', marginTop:20}}>
+              <Text style={{fontSize:18,color:'white',textAlign:'center',fontWeight:'bold'}}>企业服务器</Text>
+            </View>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback
+            onPress={() => this.props.navigation.navigate('LocalService')}
+            background={TouchableNativeFeedback.Ripple('#455a64')}>
+            <View style={{width: '100%', height: 50, backgroundColor: '#00e676',borderRadius:10,justifyContent:'center', marginTop:20}}>
+              <Text style={{fontSize:18,color:'white',textAlign:'center',fontWeight:'bold'}}>本地服务器</Text>
+            </View>
+          </TouchableNativeFeedback>
           <View style={{marginTop:40,borderColor:'grey',borderWidth:1,borderStyle:'solid',padding:10}}>
             <Text>请您选择网络配置地址:</Text>
             <Text>    默认服务器：我司云平台</Text>
